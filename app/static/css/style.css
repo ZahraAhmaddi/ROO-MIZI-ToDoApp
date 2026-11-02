@@ -1,0 +1,318 @@
+:root {
+  --ink: #191D23;
+  --teal: #57707A;
+  --blue: #7E919F;
+  --grey: #979DAB;
+  --mauve: #C5BAC4;
+  --fog: #DEDCDC;
+  --error: #A32B3B;
+  --text-soft: #3C4A52;
+  --motif-dark:  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Cpath d='M11 2l9 9-9 9-9-9z' fill='none' stroke='%23191D23' stroke-opacity='0.22' stroke-width='1.2'/%3E%3Ccircle cx='11' cy='11' r='1.6' fill='%23191D23' fill-opacity='0.22'/%3E%3C/svg%3E");
+  --motif-light: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22'%3E%3Cpath d='M11 2l9 9-9 9-9-9z' fill='none' stroke='%23fff' stroke-opacity='0.3' stroke-width='1.2'/%3E%3Ccircle cx='11' cy='11' r='1.6' fill='%23fff' fill-opacity='0.3'/%3E%3C/svg%3E");
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+:focus-visible {
+  outline: 3px solid var(--mauve);
+  outline-offset: 2px;
+}
+
+/* ---------- Page ---------- */
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* The bottom edge of the top bar is the edge of the desk: everything below
+   it is "on the desk". It is drawn as a thin line with small diamonds, like
+   the ruled border (hashiye) of a manuscript page. */
+.topbar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 26px;
+}
+.topbar::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='10' viewBox='0 0 28 10'%3E%3Cpath d='M0 5h28' stroke='%2357707A' stroke-width='2'/%3E%3Cpath d='M14 0l5 5-5 5-5-5z' fill='%23C5BAC4'/%3E%3C/svg%3E") repeat-x left center;
+}
+
+.brand {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--fog);
+}
+.brand svg { color: var(--mauve); flex: none; }
+.brand-fa {
+  font-family: "Vazirmatn", "Inter", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--blue);
+  padding-left: 12px;
+  margin-left: 2px;
+  border-left: 2px solid var(--teal);
+  line-height: 1.2;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  height: 48px;
+  padding: 0 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.btn-accent  { background: var(--mauve); color: var(--ink); }
+.btn-dark    { background: var(--ink); color: var(--fog); padding: 0 26px; }
+.btn-outline { background: transparent; color: var(--ink); border: 1px solid var(--teal); font-weight: 600; }
+.btn-accent:hover  { background: #d3c9d2; }
+.btn-dark:hover    { background: #2a313a; }
+.btn-outline:hover { background: rgba(87, 112, 122, 0.12); }
+
+/* ---------- Board (columns side by side) ---------- */
+.board {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.column {
+  flex: 1 1 0;
+  min-width: 0;
+  background-color: var(--fog);
+  /* faint diamond lattice, like the ground of a tile panel */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Cpath d='M14 0l14 14-14 14L0 14z' fill='none' stroke='%2357707A' stroke-opacity='0.14'/%3E%3C/svg%3E");
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.column-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+}
+.column-head { position: relative; overflow: hidden; }
+.column-head > * { position: relative; }
+.column-head svg { flex: none; }
+/* small diamond-and-dot motif that fades in from the right edge */
+.column-head::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 55%;
+  background-image: var(--motif);
+  background-size: 22px 22px;
+  -webkit-mask-image: linear-gradient(to left, #000 20%, transparent);
+          mask-image: linear-gradient(to left, #000 20%, transparent);
+  pointer-events: none;
+}
+.column-head h2 {
+  flex: 1;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+.count {
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--fog);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.col-todo     .column-head { background: var(--mauve); color: var(--ink); --motif: var(--motif-dark); }
+.col-progress .column-head { background: var(--blue);  color: var(--ink); --motif: var(--motif-dark); }
+.col-done     .column-head { background: var(--teal);  color: #fff; --motif: var(--motif-light); }
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--grey);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 1px 0 var(--mauve), 0 6px 10px -6px rgba(25, 29, 35, 0.35);
+}
+.card { position: relative; }
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid #E4E0E4;
+  border-radius: 8px;
+  pointer-events: none;
+}
+.card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  background: var(--mauve);
+  transform: translate(-50%, -50%) rotate(45deg);
+  pointer-events: none;
+}
+.card > * { position: relative; }
+.card h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.card p  { margin: 0; font-size: 14px; color: var(--text-soft); line-height: 1.6; }
+.meta    { font-size: 13px; color: var(--teal); }
+
+/* ---------- Dialog ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(25, 29, 35, 0.7);
+}
+.overlay:target { display: flex; }
+
+.overlay-bg { position: absolute; inset: 0; }
+
+.dialog {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: var(--fog);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.dialog-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 8px 8px 24px;
+  background: var(--mauve);
+}
+.dialog-head h2 { margin: 0; font-size: 18px; font-weight: 700; }
+
+.icon-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: var(--ink);
+}
+.icon-btn:hover { background: rgba(25, 29, 35, 0.1); }
+
+.dialog-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 14px; font-weight: 600; }
+.req { color: var(--error); }
+.opt { font-weight: 400; color: var(--teal); }
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: 1px solid var(--grey);
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  font-size: 16px;
+  color: var(--ink);
+  padding: 0 14px;
+}
+.field input { height: 48px; }
+.field textarea { padding: 12px 14px; resize: none; }
+
+.field input[aria-invalid="true"] { border: 2px solid var(--error); }
+.error   { margin: 0; font-size: 14px; font-weight: 600; color: var(--error); }
+.counter { align-self: flex-end; font-size: 13px; color: var(--teal); }
+
+.actions { display: flex; justify-content: flex-end; gap: 12px; }
+
+/* ---------- Mobile: columns scroll horizontally ---------- */
+@media (max-width: 800px) {
+  .page { padding: 32px 0 32px 16px; gap: 20px; }
+  .topbar { padding-right: 16px; }
+  .brand { font-size: 24px; }
+  .brand svg { width: 26px; height: 26px; }
+  .brand-fa { font-size: 17px; padding-left: 8px; }
+  .btn-accent { padding: 0 16px; }
+
+  .board {
+    overflow-x: auto;
+    padding-right: 16px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .column {
+    flex: none;
+    width: 280px;
+    scroll-snap-align: start;
+  }
+}
+
+/* very narrow phones: drop the Persian wordmark so the bar stays on one line */
+@media (max-width: 480px) {
+  .brand-fa { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
