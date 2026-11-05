@@ -528,3 +528,52 @@ body {
     }
 
 }
+/* Task title and status checkbox */
+
+.task-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.task-title-row h3 {
+    margin: 0;
+}
+
+.status-form {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.status-checkbox {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    border: 2px solid #888;
+    border-radius: 4px;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.status-form .status-checkbox:hover {
+    background: #dce5e8;
+    border-color: #57707A;
+}
+
+.completed-checkbox {
+    background: #57707A;
+    border-color: #57707A;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: default;
+}
+.flash-message {
+    transition: opacity 0.5s ease;
+}

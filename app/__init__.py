@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 db = SQLAlchemy()
 
@@ -7,7 +8,10 @@ db = SQLAlchemy()
 def create_app():
     app = Flask(__name__)
 
-    app.config["SECRET_KEY"] = "todo-app-development-key"
+    app.config["SECRET_KEY"] = os.environ.get(
+        "SECRET_KEY",
+        "dev-secret-key-change-me"
+    )
 
     # SQLite database
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///tasks.db"

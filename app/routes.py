@@ -1,3 +1,4 @@
+
 from flask import render_template, request, redirect, url_for, flash
 from app import db
 from app.models import Task
@@ -13,17 +14,17 @@ def init_routes(app):
 
         todo_tasks = [
             task for task in tasks
-            if task.status == "todo"
+            if task.status == "TODO"
         ]
 
         progress_tasks = [
             task for task in tasks
-            if task.status == "in_progress"
+            if task.status == "IN_PROGRESS"
         ]
 
         done_tasks = [
             task for task in tasks
-            if task.status == "done"
+            if task.status == "DONE"
         ]
 
         return render_template(
@@ -42,17 +43,17 @@ def init_routes(app):
             "description", ""
         ).strip()
 
-        # Validate title
+        # Validate title and description
         if not title:
-            flash("عنوان وظیفه نمی‌تواند خالی باشد.", "error")
+            flash("Task title cannot be empty.", "error")
             return redirect(url_for("index"))
 
         if len(title) > 100:
-            flash("عنوان نباید بیشتر از ۱۰۰ کاراکتر باشد.", "error")
+            flash("Task title cannot exceed 100 characters.", "error")
             return redirect(url_for("index"))
 
         if len(description) > 2000:
-            flash("توضیحات نباید بیشتر از ۲۰۰۰ کاراکتر باشد.", "error")
+            flash("Description cannot exceed 2,000 characters.", "error")
             return redirect(url_for("index"))
 
         new_task = Task(
@@ -65,13 +66,37 @@ def init_routes(app):
             db.session.add(new_task)
             db.session.commit()
 
-            flash("وظیفه با موفقیت ثبت شد.", "success")
+            flash("Task created successfully.", "success")
 
         except Exception:
             db.session.rollback()
             app.logger.exception("Error while saving task")
 
-            flash("خطا در ذخیره وظیفه رخ داد.", "error")
+            flash("Failed to save task. Please try again.", "error")
 
         return redirect(url_for("index"))
-    
+
+    @app.route("/update-status/<int:task_id>", methods=["POST"])
+    def update_status(task_id):
+        task = Task.query.get_or_404(task_id)
+        new_status = request.form.get("status", "").upper()
+
+        allowed_statuses = {"TODO", "IN_PROGRESS", "DONE"}
+
+        if new_status not in allowed_statuses:
+            flash("Invalid task status.", "error")
+            return redirect(url_for("index"))
+
+        try:
+            task.status = new_status
+            db.session.commit()
+
+            flash("Task status updated successfully.", "success")
+
+        except Exception:
+            db.session.rollback()
+            app.logger.exception("Error while updating task status")
+
+            flash("Failed to update task status. Please try again.", "error")
+
+        return redirect(url_for("index"))

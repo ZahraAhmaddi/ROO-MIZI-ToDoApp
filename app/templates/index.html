@@ -47,11 +47,14 @@
           New task
         </a>
       </header>
-
       {% with messages = get_flashed_messages(with_categories=true) %}
-      {% for category, message in messages %}
-      <div class="alert {{ category }}" role="alert">{{ message }}</div>
-      {% endfor %}
+      {% if messages %}
+        {% for category, message in messages %}
+            <div class="flash-message {{ category }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+       {% endif %}
       {% endwith %}
 
       <div class="board">
@@ -78,13 +81,19 @@
             {% for task in todo_tasks %}
 
             <li class="card">
-              <h3>{{ task.title }}</h3>
-
-              {% if task.description %}
-
-              <p>{{ task.description }}</p>
-
-              {% endif %}
+              <div class="task-title-row">
+                <form
+                  class="status-form"
+                  action="{{ url_for('update_status', task_id=task.id) }}"
+                  method="POST">
+                  <input type="hidden" name="status" value="IN_PROGRESS">
+                  <button
+                    type="submit"
+                    class="status-checkbox"
+                    aria-label="Move to In Progress"></button>
+                </form>
+                <h3>{{ task.title }}</h3>
+              </div>
 
               <span class="meta">Created {{ task.created_at }}</span>
             </li>
@@ -122,13 +131,19 @@
             {% for task in progress_tasks %}
 
             <li class="card">
-              <h3>{{ task.title }}</h3>
-
-              {% if task.description %}
-
-              <p>{{ task.description }}</p>
-
-              {% endif %}
+              <div class="task-title-row">
+                <form
+                  class="status-form"
+                  action="{{ url_for('update_status', task_id=task.id) }}"
+                  method="POST">
+                  <input type="hidden" name="status" value="DONE">
+                  <button
+                    type="submit"
+                    class="status-checkbox"
+                    aria-label="Move to Completed"></button>
+                </form>
+                <h3>{{ task.title }}</h3>
+              </div>
 
               <span class="meta">Created {{ task.created_at }}</span>
             </li>
@@ -165,17 +180,14 @@
           <ul class="cards">
             {% for task in done_tasks %}
 
-            <li class="card">
-              <h3>{{ task.title }}</h3>
-
-              {% if task.description %}
-
-              <p>{{ task.description }}</p>
-
-              {% endif %}
-
-              <span class="meta">Created {{ task.created_at }}</span>
-            </li>
+          <li class="card">
+              <div class="task-title-row">
+                  <span class="status-checkbox completed-checkbox" aria-label="Completed">
+                   ✓
+                  </span>
+                  <h3>{{ task.title }}</h3>
+              </div>
+          </li>
 
             {% else %}
 
@@ -248,5 +260,20 @@
         </form>
       </div>
     </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const messages = document.querySelectorAll(".flash-message");
+
+        messages.forEach(function (message) {
+            setTimeout(function () {
+                message.style.opacity = "0";
+
+                setTimeout(function () {
+                    message.remove();
+                }, 500);
+            }, 5000);
+        });
+    });
+    </script>
   </body>
 </html>
