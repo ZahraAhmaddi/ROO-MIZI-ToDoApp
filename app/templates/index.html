@@ -50,7 +50,7 @@
       {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
-            <div class="flash-message {{ category }}">
+            <div class="alert flash-message {{ category }}">
                 {{ message }}
             </div>
         {% endfor %}
@@ -94,8 +94,13 @@
                 </form>
                 <h3>{{ task.title }}</h3>
               </div>
+              {% if task.description %}
+                  <p>{{ task.description }}</p>
+              {% endif %}
 
-              <span class="meta">Created {{ task.created_at }}</span>
+              <span class="meta">
+                 Created {{ task.created_at.strftime('%Y-%m-%d %H:%M') }}
+              </span>
             </li>
 
             {% else %}
@@ -144,8 +149,13 @@
                 </form>
                 <h3>{{ task.title }}</h3>
               </div>
+              {% if task.description %}
+                  <p>{{ task.description }}</p>
+              {% endif %}
 
-              <span class="meta">Created {{ task.created_at }}</span>
+              <span class="meta">
+                 Created {{ task.created_at.strftime('%Y-%m-%d %H:%M') }}
+              </span>              
             </li>
 
             {% else %}
@@ -187,6 +197,13 @@
                   </span>
                   <h3>{{ task.title }}</h3>
               </div>
+              {% if task.description %}
+                  <p>{{ task.description }}</p>
+              {% endif %}
+
+              <span class="meta">
+                 Created {{ task.created_at.strftime('%Y-%m-%d %H:%M') }}
+              </span>              
           </li>
 
             {% else %}
