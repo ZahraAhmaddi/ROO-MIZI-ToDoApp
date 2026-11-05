@@ -120,7 +120,7 @@ Each task contains the following fields:
 
 | Field | Description |
 |---|---|
-| ID | Unique task identifier |
+| id | Unique task identifier |
 | Title | Task title (required) |
 | Description | Optional task description |
 | Status | Current task status |
@@ -248,7 +248,7 @@ http://127.0.0.1:5000/
 
 | فیلد | توضیحات |
 |---|---|
-| ID | شناسه منحصربه‌فرد هر وظیفه |
+| id | شناسه منحصربه‌فرد هر وظیفه |
 | Title | عنوان وظیفه (الزامی) |
 | Description | توضیحات وظیفه (اختیاری) |
 | Status | وضعیت فعلی وظیفه |
