@@ -1,4 +1,4 @@
-# Roo Mizi | Task Management App
+# ROO MIZI | Task Management App
 
 A simple web-based task management application built with Flask and SQLite.
 
