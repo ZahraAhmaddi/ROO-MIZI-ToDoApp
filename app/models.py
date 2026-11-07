@@ -11,7 +11,7 @@ class Task(db.Model):
 
     description = db.Column(db.String(2000), nullable=True)
 
-    # False means Not Done
+    # Default task status is TODO
     status = db.Column(db.String(20), nullable=False, default="TODO")
 
     created_at = db.Column(
