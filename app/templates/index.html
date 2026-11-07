@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Roo Mizi</title>
+    <title>ROO MIZI</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -29,7 +29,7 @@
             <path fill="currentColor" fill-rule="evenodd" d="M15.0,1.0 L18.1,7.4 L24.9,5.1 L22.6,11.9 L29.0,15.0 L22.6,18.1 L24.9,24.9 L18.1,22.6 L15.0,29.0 L11.9,22.6 L5.1,24.9 L7.4,18.1 L1.0,15.0 L7.4,11.9 L5.1,5.1 L11.9,7.4 Z M18.2,15 A3.2,3.2 0 1,0 11.8,15 A3.2,3.2 0 1,0 18.2,15 Z"></path>
           </svg>
 
-          <span>Roo Mizi</span>
+          <span>ROO MIZI</span>
 
           <span class="brand-fa" lang="fa" dir="rtl">رومیزی</span>
         </h1>
@@ -82,16 +82,7 @@
 
             <li class="card">
               <div class="task-title-row">
-                <form
-                  class="status-form"
-                  action="{{ url_for('update_status', task_id=task.id) }}"
-                  method="POST">
-                  <input type="hidden" name="status" value="IN_PROGRESS">
-                  <button
-                    type="submit"
-                    class="status-checkbox"
-                    aria-label="Move to In Progress"></button>
-                </form>
+                  <span class="status-checkbox"></span>
                 <h3>{{ task.title }}</h3>
               </div>
               {% if task.description %}
@@ -111,7 +102,7 @@
           </ul>
         </section>
 
-
+{#
         <section class="column col-progress" aria-labelledby="h-progress">
           <div class="column-head">
             <svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true">
@@ -165,8 +156,8 @@
             {% endfor %}
           </ul>
         </section>
-
-
+#}
+{#
         <section class="column col-done" aria-labelledby="h-done">
           <div class="column-head">
             <svg width="20" height="20" viewBox="0 0 22 22" aria-hidden="true">
@@ -213,6 +204,7 @@
             {% endfor %}
           </ul>
         </section>
+#}
       </div>
     </main>
 

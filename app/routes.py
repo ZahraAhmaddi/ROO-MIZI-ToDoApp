@@ -75,7 +75,7 @@ def init_routes(app):
             flash("Failed to save task. Please try again.", "error")
 
         return redirect(url_for("index"))
-
+'''
     @app.route("/update-status/<int:task_id>", methods=["POST"])
     def update_status(task_id):
         task = Task.query.get_or_404(task_id)
@@ -100,3 +100,4 @@ def init_routes(app):
             flash("Failed to update task status. Please try again.", "error")
 
         return redirect(url_for("index"))
+'''
