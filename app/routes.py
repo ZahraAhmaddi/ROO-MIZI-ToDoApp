@@ -75,29 +75,29 @@ def init_routes(app):
             flash("Failed to save task. Please try again.", "error")
 
         return redirect(url_for("index"))
-'''
-    @app.route("/update-status/<int:task_id>", methods=["POST"])
-    def update_status(task_id):
-        task = Task.query.get_or_404(task_id)
-        new_status = request.form.get("status", "").upper()
 
-        allowed_statuses = {"TODO", "IN_PROGRESS", "DONE"}
+    # @app.route("/update-status/<int:task_id>", methods=["POST"])
+    # def update_status(task_id):
+    #     task = Task.query.get_or_404(task_id)
+    #     new_status = request.form.get("status", "").upper()
 
-        if new_status not in allowed_statuses:
-            flash("Invalid task status.", "error")
-            return redirect(url_for("index"))
+    #     allowed_statuses = {"TODO", "IN_PROGRESS", "DONE"}
 
-        try:
-            task.status = new_status
-            db.session.commit()
+    #     if new_status not in allowed_statuses:
+    #         flash("Invalid task status.", "error")
+    #         return redirect(url_for("index"))
 
-            flash("Task status updated successfully.", "success")
+    #     try:
+    #         task.status = new_status
+    #         db.session.commit()
 
-        except Exception:
-            db.session.rollback()
-            app.logger.exception("Error while updating task status")
+    #         flash("Task status updated successfully.", "success")
 
-            flash("Failed to update task status. Please try again.", "error")
+    #     except Exception:
+    #         db.session.rollback()
+    #         app.logger.exception("Error while updating task status")
 
-        return redirect(url_for("index"))
-'''
+    #         flash("Failed to update task status. Please try again.", "error")
+
+    #     return redirect(url_for("index"))
+

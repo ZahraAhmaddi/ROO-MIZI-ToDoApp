@@ -10,16 +10,15 @@ A simple web-based task management application built with Flask and SQLite.
 
 ## Overview
 
-Roo Mizi is a web-based task management application designed to help users organize and track their tasks through a Kanban-style board.
+ROO MIZI is a web-based task management application designed to help users create, view, and organize their tasks.
 
-Tasks are organized into three columns: To Do, In Progress, and Completed.
+In the current version, all newly created tasks are assigned the **To Do** status and displayed in a single task column.
 
 ## Features
 
 - **Add Tasks:** Create new tasks with a required title and an optional description.
-- **View Tasks:** Display all tasks organized by their current status.
+- **View Tasks:** Display saved tasks in the To Do column.
 - **Input Validation:** Prevent empty titles and enforce input length limits.
-- **Task Status Management:** Move tasks between To Do, In Progress, and Completed.
 - **Data Persistence:** Store tasks in an SQLite database so they remain available after restarting the application.
 - **Creation Timestamp:** Display the date and time each task was created.
 - **Flash Messages:** Show success and error messages for user actions.
@@ -33,7 +32,6 @@ Tasks are organized into three columns: To Do, In Progress, and Completed.
 - SQLite
 - HTML
 - CSS
-- JavaScript
 
 ## Project Structure
 
@@ -44,15 +42,25 @@ ToDoApp/
 │   ├── __init__.py
 │   ├── models.py
 │   ├── routes.py
+│   │
 │   ├── templates/
 │   │   └── index.html
+│   │
 │   └── static/
 │       └── css/
 │           └── style.css
 │
+├── Documents/
+│   ├── Product_Backlog.docx
+│   ├── Sprint1_Backlog.docx
+│   ├── Sprint1_Coordination_Meetings_Report.docx
+│   ├── Sprint1_Performance_Report.docx
+│   └── Sprint1_Review.docx
+│
+├── .gitignore
+├── README.md
 ├── requirements.txt
-├── run.py
-└── README.md
+└── run.py
 ```
 
 ## Installation and Setup
@@ -104,13 +112,14 @@ http://127.0.0.1:5000/
 
 ## Task Workflow
 
-Tasks are organized into three status columns:
+In the current version, all newly created tasks are assigned the **To Do** status.
 
-1. **To Do:** Newly created tasks.
-2. **In Progress:** Tasks currently being worked on.
-3. **Completed:** Tasks that have been finished.
+Users can:
+1. Create a task by entering a title and an optional description.
+2. View saved tasks in the To Do column.
+3. Keep their tasks stored in the SQLite database across application restarts.
 
-Users can move tasks to the next status using the checkboxes displayed beside each task.
+Task status management is not enabled in the current version.
 
 ## Database
 
@@ -136,16 +145,15 @@ This project is developed as part of a Software Engineering course using the Scr
 
 ## معرفی پروژه
 
-رو میزی (Roo Mizi) یک سامانه تحت وب برای مدیریت و سازمان‌دهی وظایف است که با استفاده از فریم‌ورک Flask و پایگاه داده SQLite توسعه داده شده است.
+رو میزی (Roo Mizi) یک سامانه تحت وب برای ثبت، مشاهده و سازمان‌دهی وظایف است که با استفاده از فریم‌ورک Flask و پایگاه داده SQLite توسعه داده شده است.
 
-این برنامه با بهره‌گیری از یک برد کانبان، وظایف را در سه ستون «انجام‌نشده»، «در حال انجام» و «تکمیل‌شده» نمایش می‌دهد.
+در نسخه فعلی، تمام وظایف تازه ثبت‌شده با وضعیت «انجام‌نشده» (To Do) ذخیره می‌شوند و در یک ستون نمایش داده می‌شوند.
 
 ## قابلیت‌ها
 
 - **افزودن وظیفه:** امکان ثبت وظایف جدید با عنوان الزامی و توضیحات اختیاری.
-- **مشاهده وظایف:** نمایش وظایف ثبت‌شده بر اساس وضعیت آن‌ها.
+- **مشاهده وظایف:** نمایش وظایف ذخیره‌شده در ستون انجام‌نشده.
 - **اعتبارسنجی ورودی‌ها:** جلوگیری از ثبت عنوان خالی و محدود کردن طول عنوان و توضیحات.
-- **مدیریت وضعیت وظایف:** امکان انتقال وظایف بین سه وضعیت انجام‌نشده، در حال انجام و تکمیل‌شده.
 - **ذخیره‌سازی اطلاعات:** نگهداری اطلاعات وظایف در پایگاه داده SQLite و حفظ آن‌ها پس از اجرای مجدد برنامه.
 - **نمایش زمان ایجاد:** ثبت و نمایش تاریخ و زمان ایجاد هر وظیفه.
 - **پیام‌های بازخورد:** نمایش پیام‌های موفقیت و خطا متناسب با عملیات انجام‌شده.
@@ -170,15 +178,25 @@ ToDoApp/
 │   ├── __init__.py
 │   ├── models.py
 │   ├── routes.py
+│   │
 │   ├── templates/
 │   │   └── index.html
+│   │
 │   └── static/
 │       └── css/
 │           └── style.css
 │
+├── Documents/
+│   ├── Product_Backlog.docx
+│   ├── Sprint1_Backlog.docx
+│   ├── Sprint1_Coordination_Meetings_Report.docx
+│   ├── Sprint1_Performance_Report.docx
+│   └── Sprint1_Review.docx
+│
+├── .gitignore
+├── README.md
 ├── requirements.txt
-├── run.py
-└── README.md
+└── run.py
 ```
 
 ## راهنمای نصب و اجرا
@@ -230,15 +248,14 @@ http://127.0.0.1:5000/
 
 ## گردش کار وظایف
 
-وظایف در برنامه در قالب سه ستون سازمان‌دهی می‌شوند:
+در نسخه فعلی، تمام وظایف جدید با وضعیت «انجام‌نشده» (To Do) ثبت می‌شوند.
 
-۱. **انجام‌نشده (To Do):** وظایف تازه ثبت‌شده در این بخش قرار می‌گیرند.
+کاربر می‌تواند:
+۱. با وارد کردن عنوان و توضیحات اختیاری، وظیفه جدیدی ثبت کند.
+۲. وظایف ذخیره‌شده را در ستون انجام‌نشده مشاهده کند.
+۳. با استفاده از پایگاه داده SQLite، اطلاعات وظایف را پس از اجرای مجدد برنامه حفظ کند.
 
-۲. **در حال انجام (In Progress):** وظایفی که کار روی آن‌ها آغاز شده است، در این بخش نمایش داده می‌شوند.
-
-۳. **تکمیل‌شده (Completed):** وظایفی که انجام آن‌ها به پایان رسیده است، در این بخش قرار می‌گیرند.
-
-کاربر می‌تواند با استفاده از چک‌باکس کنار هر وظیفه، وضعیت آن را به مرحله بعدی منتقل کند.
+قابلیت مدیریت و تغییر وضعیت وظایف در نسخه فعلی فعال نیست.
 
 ## پایگاه داده
 
