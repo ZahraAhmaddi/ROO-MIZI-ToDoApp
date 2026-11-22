@@ -18,7 +18,7 @@ In the current version, all newly created tasks are assigned the **To Do** statu
 
 - **Add Tasks:** Create new tasks with a required title and an optional description.
 - **View Tasks:** Display saved tasks in the To Do column.
-- **Input Validation:** Prevent empty titles and enforce input length limits.
+- **Input Validation:** Trim task fields, require a visible title, reject invisible descriptions and unsupported control characters, and enforce 100-character title and 2,000-character description limits.
 - **Data Persistence:** Store tasks in an SQLite database so they remain available after restarting the application.
 - **Creation Timestamp:** Display the date and time each task was created.
 - **Flash Messages:** Show success and error messages for user actions.
