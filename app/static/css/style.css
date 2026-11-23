@@ -113,3 +113,29 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .ground { margin:0 -15px; }
 }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
+
+
+/* Pixel-style Persian brand + matching delete confirmation dialog */
+.brand-fa {
+  font-family: 'Handjet', 'Vazirmatn', sans-serif;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--pink);
+  text-shadow: 1px 1px 0 var(--rosed), 2px 2px 0 var(--line), 3px 3px 0 var(--shadow);
+  image-rendering: pixelated;
+}
+.delete-dialog-head { background: var(--rose); color: #fff7ed; }
+.delete-dialog-body { padding: 18px; }
+.delete-dialog-body p { margin: 0 0 10px; font-size: 23px; line-height: 1.35; }
+.delete-dialog-body strong { color: var(--rose); overflow-wrap: anywhere; }
+.delete-dialog-body .delete-warning { color: var(--soft); font-size: 19px; }
+.delete-dialog-body .dialog-actions { margin-top: 20px; }
+.delete-dialog-body form { margin: 4px; }
+.delete-confirm-button { background: var(--rose); color: #fff; }
+.delete-confirm-button:hover { filter: brightness(1.08); }
+@media(max-width:480px) {
+  .brand-fa { font-size: 23px; }
+  .delete-dialog-body { padding: 14px; }
+  .delete-dialog-body .dialog-actions { flex-wrap: wrap; }
+}
