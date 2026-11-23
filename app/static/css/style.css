@@ -173,5 +173,5 @@ button, a { -webkit-tap-highlight-color: transparent; }
 /* Slightly raise the Persian wordmark relative to the English logo */
 .brand-fa {
   position: relative;
-  top: -4px;
+  top: -7px;
 }
