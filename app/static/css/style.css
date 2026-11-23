@@ -23,7 +23,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 :focus-visible { outline: 3px dashed var(--pink); outline-offset: 3px; }
 .wrap { max-width: 1160px; margin: 0 auto; padding: 28px 22px 0; }
 .topbar { display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
-.brand { display:flex; align-items:center; gap:13px; color:var(--ink); text-decoration:none; }
+.brand { display:flex; flex-wrap:nowrap; align-items:center; gap:13px; color:var(--ink); text-decoration:none; white-space:nowrap; min-width:max-content; }
+.brand-name, .brand-fa, .brand-divider, .brand-star { flex-shrink:0; }
 .brand-star { color:var(--pink); font-size:34px; line-height:1; text-shadow:2px 2px 0 var(--line); }
 .brand-name { display:inline-flex; align-items:center; gap:9px; font:22px/1.35 'Press Start 2P',monospace; letter-spacing:1px; transform:translateY(-2px); }
 .brand-roo { color:#FF8BC2; text-shadow:1px 1px 0 #D94D91,2px 2px 0 #B93675,3px 3px 0 #8E285A,4px 5px 0 rgba(71,67,41,.28); }
@@ -53,7 +54,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .flash-message.error { border-color:#c2304f; }
 .board { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px; align-items:start; }
 .column { min-width:0; margin:4px; background:var(--column); box-shadow:0 -4px 0 var(--line),0 4px 0 var(--line),-4px 0 0 var(--line),4px 0 0 var(--line),inset -4px -4px 0 var(--shadow); }
-.column-head { display:flex; align-items:center; gap:10px; padding:14px; font:10px/1.5 'Press Start 2P',monospace; }
+.column-head { display:flex; align-items:center; gap:10px; padding:14px; font:12px/1.6 'Press Start 2P',monospace; }
 .column-head h2 { margin:0; font:inherit; }
 .column-symbol { font:26px/1 'VT323',monospace; }
 .count { margin-left:auto; padding:5px 8px; background:var(--ink); color:var(--bg); font:16px 'VT323',monospace; }
@@ -113,3 +114,64 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .ground { margin:0 -15px; }
 }
 @media(prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
+
+
+/* Pixel-style Persian brand + matching delete confirmation dialog */
+.brand-fa {
+  font-family: 'Handjet', 'Vazirmatn', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  color: var(--pink);
+  text-shadow: 1px 1px 0 var(--rosed), 2px 2px 0 var(--line), 3px 3px 0 var(--shadow);
+  image-rendering: pixelated;
+}
+.delete-dialog-head { background: var(--pink); color: #342331; }
+.delete-dialog-body { padding: 18px; }
+.delete-dialog-body p { margin: 0 0 10px; font-size: 23px; line-height: 1.35; }
+.delete-dialog-body strong { color: var(--rose); overflow-wrap: anywhere; }
+.delete-dialog-body .delete-warning { color: var(--soft); font-size: 19px; }
+.delete-dialog-body .dialog-actions { margin-top: 20px; }
+.delete-dialog-body form { margin: 4px; }
+.delete-confirm-button { background: var(--rose); color: #fff; }
+.delete-confirm-button:hover { filter: brightness(1.08); }
+@media(max-width:480px) {
+  .brand-fa { font-size: 29px; }
+  .column-head { font-size: 11px; }
+  .delete-dialog-body { padding: 14px; }
+  .delete-dialog-body .dialog-actions { flex-wrap: wrap; }
+}
+
+/* Keep the complete bilingual logo on one horizontal line */
+.brand {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  white-space: nowrap;
+  min-width: max-content;
+  direction: ltr;
+}
+.brand-name {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  direction: ltr;
+  white-space: nowrap;
+}
+.brand-fa {
+  display: inline-block;
+  direction: rtl;
+  unicode-bidi: isolate;
+  white-space: nowrap;
+}
+.brand-m { color: #38ACEC; text-shadow: 1px 1px 0 #1976B8, 2px 2px 0 #12558A, 3px 3px 0 rgba(71,67,41,.28); }
+.brand-z { color: #FFD300; text-shadow: 1px 1px 0 #C79E00, 2px 2px 0 #927300, 3px 3px 0 rgba(71,67,41,.28); }
+:root[data-theme="dark"] .brand-m { color: #38ACEC; text-shadow: 1px 1px 0 #1976B8, 2px 2px 0 #12558A, 3px 3px 0 rgba(0,0,0,.55); }
+:root[data-theme="dark"] .brand-z { color: #FFD300; text-shadow: 1px 1px 0 #C79E00, 2px 2px 0 #927300, 3px 3px 0 rgba(0,0,0,.55); }
+
+/* Slightly raise the Persian wordmark relative to the English logo */
+.brand-fa {
+  position: relative;
+  top: -7px;
+}
