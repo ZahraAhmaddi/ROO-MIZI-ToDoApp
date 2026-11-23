@@ -1,6 +1,6 @@
 # ROO MIZI | Task Management App
 
-A simple web-based task management application built with Flask and SQLite.
+A pixel-art, web-based task management application built with Python, Flask, Flask-SQLAlchemy, and SQLite.
 
 [English](#english) | [فارسی](#فارسی)
 
@@ -10,75 +10,75 @@ A simple web-based task management application built with Flask and SQLite.
 
 ## Overview
 
-ROO MIZI is a web-based task management application designed to help users create, view, and organize their tasks.
-
-In the current version, all newly created tasks are assigned the **To Do** status and displayed in a single task column.
+ROO MIZI is a task management web application developed as part of a Software Engineering course. It allows users to create, view, edit, delete, and organize tasks through a three-column task board.
 
 ## Features
 
-- **Add Tasks:** Create new tasks with a required title and an optional description.
-- **View Tasks:** Display saved tasks in the To Do column.
-- **Input Validation:** Trim task fields, require a visible title, reject invisible descriptions and unsupported control characters, and enforce 100-character title and 2,000-character description limits.
-- **Data Persistence:** Store tasks in an SQLite database so they remain available after restarting the application.
-- **Creation Timestamp:** Display the date and time each task was created.
-- **Flash Messages:** Show success and error messages for user actions.
+- **Create tasks:** Add a task with a required title and an optional description.
+- **View tasks:** Display tasks in the To Do, In Progress, and Completed columns.
+- **Change task status:** Move tasks between the three status columns.
+- **Edit tasks:** Update a task's title and description.
+- **Delete tasks:** Remove tasks after confirmation.
+- **Input validation:** Trim input, reject empty or invisible titles, reject unsupported control characters, and enforce field-length limits.
+- **Task limits:** Titles can contain up to 100 characters; descriptions can contain up to 2,000 characters.
+- **Persistent storage:** Save task data in a local SQLite database.
+- **Creation timestamps:** Display when each task was created.
+- **Pixel-art interface:** Responsive task board with light/dark theme support.
 
-## Technologies Used
+## Technologies
 
 - Python
 - Flask
 - Flask-SQLAlchemy
-- SQLAlchemy
 - SQLite
-- HTML
-- CSS
+- HTML, CSS, and JavaScript
+- Jinja templates
 
 ## Project Structure
 
 ```text
-ToDoApp/
-│
+ROO-MIZI-ToDoApp/
 ├── app/
 │   ├── __init__.py
 │   ├── models.py
 │   ├── routes.py
-│   │
 │   ├── templates/
 │   │   └── index.html
-│   │
 │   └── static/
-│       └── css/
-│           └── style.css
-│
+│       ├── css/
+│       │   └── style.css
+│       └── js/
+│           └── main.js
 ├── Documents/
 │   ├── Product_Backlog.docx
 │   ├── Sprint1_Backlog.docx
 │   ├── Sprint1_Coordination_Meetings_Report.docx
 │   ├── Sprint1_Performance_Report.docx
 │   └── Sprint1_Review.docx
-│
+├── test/
+│   └── test_task_validation.py
 ├── .gitignore
 ├── README.md
 ├── requirements.txt
 └── run.py
 ```
 
-## Installation and Setup
+## Setup and Installation
 
-### 1. Clone the Repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/ZahraAhmaddi/ROO-MIZI-ToDoApp.git
 cd ROO-MIZI-ToDoApp
 ```
 
-### 2. Create a Virtual Environment
+### 2. Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-### 3. Activate the Virtual Environment
+### 3. Activate the virtual environment
 
 **Windows (PowerShell):**
 
@@ -92,52 +92,56 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-### 4. Install Dependencies
+### 4. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
-### 5. Run the Application
+### 5. Run the application
 
 ```bash
 python run.py
 ```
 
-Open your browser and visit:
+Open [http://127.0.0.1:5000/](http://127.0.0.1:5000/) in your browser.
 
-```text
-http://127.0.0.1:5000/
+## Running Tests
+
+With the virtual environment activated, run:
+
+```bash
+python -m unittest discover -s test -v
 ```
 
-## Task Workflow
+## Task Statuses
 
-In the current version, all newly created tasks are assigned the **To Do** status.
-
-Users can:
-1. Create a task by entering a title and an optional description.
-2. View saved tasks in the To Do column.
-3. Keep their tasks stored in the SQLite database across application restarts.
-
-Task status management is not enabled in the current version.
-
-## Database
-
-The application uses SQLite with Flask-SQLAlchemy for data storage.
-
-Each task contains the following fields:
-
-| Field | Description |
+| Status | Meaning |
 |---|---|
-| id | Unique task identifier |
-| Title | Task title (required) |
-| Description | Optional task description |
-| Status | Current task status |
-| Created At | Task creation date and time |
+| TODO | The task has not been started |
+| IN_PROGRESS | The task is currently being worked on |
+| DONE | The task has been completed |
 
-## Project Status
+New tasks are created with the TODO status by default.
 
-This project is developed as part of a Software Engineering course using the Scrum framework.
+## Data Storage
+
+The application uses SQLite through Flask-SQLAlchemy. The database is created locally when the application starts. The database file is intentionally excluded from version control; each local installation maintains its own task data.
+
+Each task stores:
+- A unique ID
+- A title (maximum 100 characters)
+- An optional description (maximum 2,000 characters)
+- A status (TODO, IN_PROGRESS, or DONE)
+- A creation timestamp
+
+## Configuration
+
+The application reads its Flask secret key from the `SECRET_KEY` environment variable. If it is not set, the application uses a development fallback. Set a private value through the environment when deploying beyond local development.
+
+## Development
+
+This project is developed for a Software Engineering course using the Scrum framework. Project planning and sprint documents are available in the `Documents/` directory.
 
 ---
 
@@ -145,61 +149,60 @@ This project is developed as part of a Software Engineering course using the Scr
 
 ## معرفی پروژه
 
-رو میزی (Roo Mizi) یک سامانه تحت وب برای ثبت، مشاهده و سازمان‌دهی وظایف است که با استفاده از فریم‌ورک Flask و پایگاه داده SQLite توسعه داده شده است.
-
-در نسخه فعلی، تمام وظایف تازه ثبت‌شده با وضعیت «انجام‌نشده» (To Do) ذخیره می‌شوند و در یک ستون نمایش داده می‌شوند.
+«رو میزی» (ROO MIZI) یک برنامه مدیریت وظایف تحت وب است که در قالب درس مهندسی نرم‌افزار و با استفاده از Python، فریم‌ورک Flask و پایگاه داده SQLite توسعه داده شده است. این برنامه امکان ثبت، مشاهده، ویرایش، حذف و دسته‌بندی وظایف را در یک برد سه‌ستونه فراهم می‌کند.
 
 ## قابلیت‌ها
 
-- **افزودن وظیفه:** امکان ثبت وظایف جدید با عنوان الزامی و توضیحات اختیاری.
-- **مشاهده وظایف:** نمایش وظایف ذخیره‌شده در ستون انجام‌نشده.
-- **اعتبارسنجی ورودی‌ها:** جلوگیری از ثبت عنوان خالی و محدود کردن طول عنوان و توضیحات.
-- **ذخیره‌سازی اطلاعات:** نگهداری اطلاعات وظایف در پایگاه داده SQLite و حفظ آن‌ها پس از اجرای مجدد برنامه.
-- **نمایش زمان ایجاد:** ثبت و نمایش تاریخ و زمان ایجاد هر وظیفه.
-- **پیام‌های بازخورد:** نمایش پیام‌های موفقیت و خطا متناسب با عملیات انجام‌شده.
+- **ثبت وظیفه:** افزودن وظیفه با عنوان الزامی و توضیحات اختیاری.
+- **مشاهده وظایف:** نمایش وظایف در ستون‌های «انجام‌نشده»، «در حال انجام» و «انجام‌شده».
+- **تغییر وضعیت:** انتقال وظایف بین سه ستون وضعیت.
+- **ویرایش وظیفه:** تغییر عنوان و توضیحات وظیفه.
+- **حذف وظیفه:** حذف وظیفه پس از نمایش پنجره تأیید.
+- **اعتبارسنجی ورودی‌ها:** جلوگیری از ثبت عنوان خالی یا نامرئی، کنترل نویسه‌های نامعتبر و محدودیت طول فیلدها.
+- **محدودیت طول:** حداکثر ۱۰۰ نویسه برای عنوان و ۲۰۰۰ نویسه برای توضیحات.
+- **ذخیره‌سازی پایدار:** نگهداری اطلاعات در پایگاه داده محلی SQLite.
+- **زمان ایجاد:** نمایش زمان ثبت هر وظیفه.
+- **رابط کاربری پیکسلی:** طراحی برد وظایف با پشتیبانی از پوسته روشن و تاریک.
 
 ## فناوری‌های مورد استفاده
 
 - Python
 - Flask
 - Flask-SQLAlchemy
-- SQLAlchemy
 - SQLite
-- HTML
-- CSS
-- JavaScript
+- HTML، CSS و JavaScript
+- قالب‌های Jinja
 
 ## ساختار پروژه
 
 ```text
-ToDoApp/
-│
+ROO-MIZI-ToDoApp/
 ├── app/
 │   ├── __init__.py
 │   ├── models.py
 │   ├── routes.py
-│   │
 │   ├── templates/
 │   │   └── index.html
-│   │
 │   └── static/
-│       └── css/
-│           └── style.css
-│
+│       ├── css/
+│       │   └── style.css
+│       └── js/
+│           └── main.js
 ├── Documents/
 │   ├── Product_Backlog.docx
 │   ├── Sprint1_Backlog.docx
 │   ├── Sprint1_Coordination_Meetings_Report.docx
 │   ├── Sprint1_Performance_Report.docx
 │   └── Sprint1_Review.docx
-│
+├── test/
+│   └── test_task_validation.py
 ├── .gitignore
 ├── README.md
 ├── requirements.txt
 └── run.py
 ```
 
-## راهنمای نصب و اجرا
+## نصب و راه‌اندازی
 
 ### ۱. دریافت مخزن پروژه
 
@@ -216,13 +219,13 @@ python -m venv .venv
 
 ### ۳. فعال‌سازی محیط مجازی
 
-**در ویندوز (PowerShell):**
+**ویندوز (PowerShell):**
 
 ```powershell
 .venv\Scripts\Activate.ps1
 ```
 
-**در Linux و macOS:**
+**Linux / macOS:**
 
 ```bash
 source .venv/bin/activate
@@ -231,7 +234,7 @@ source .venv/bin/activate
 ### ۴. نصب وابستگی‌ها
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 
 ### ۵. اجرای برنامه
@@ -240,37 +243,36 @@ pip install -r requirements.txt
 python run.py
 ```
 
-پس از اجرای برنامه، آدرس زیر را در مرورگر باز کنید:
+سپس آدرس [http://127.0.0.1:5000/](http://127.0.0.1:5000/) را در مرورگر باز کنید.
 
-```text
-http://127.0.0.1:5000/
+## اجرای تست‌ها
+
+پس از فعال‌سازی محیط مجازی، دستور زیر را اجرا کنید:
+
+```bash
+python -m unittest discover -s test -v
 ```
 
-## گردش کار وظایف
+## وضعیت وظایف
 
-در نسخه فعلی، تمام وظایف جدید با وضعیت «انجام‌نشده» (To Do) ثبت می‌شوند.
-
-کاربر می‌تواند:
-۱. با وارد کردن عنوان و توضیحات اختیاری، وظیفه جدیدی ثبت کند.
-۲. وظایف ذخیره‌شده را در ستون انجام‌نشده مشاهده کند.
-۳. با استفاده از پایگاه داده SQLite، اطلاعات وظایف را پس از اجرای مجدد برنامه حفظ کند.
-
-قابلیت مدیریت و تغییر وضعیت وظایف در نسخه فعلی فعال نیست.
-
-## پایگاه داده
-
-برای ذخیره‌سازی اطلاعات از پایگاه داده SQLite و کتابخانه Flask-SQLAlchemy استفاده شده است.
-
-اطلاعات هر وظیفه شامل فیلدهای زیر است:
-
-| فیلد | توضیحات |
+| وضعیت | توضیح |
 |---|---|
-| id | شناسه منحصربه‌فرد هر وظیفه |
-| Title | عنوان وظیفه (الزامی) |
-| Description | توضیحات وظیفه (اختیاری) |
-| Status | وضعیت فعلی وظیفه |
-| Created At | تاریخ و زمان ایجاد وظیفه |
+| TODO | انجام‌نشده |
+| IN_PROGRESS | در حال انجام |
+| DONE | انجام‌شده |
 
-## وضعیت توسعه پروژه
+تمام وظایف جدید به‌صورت پیش‌فرض با وضعیت TODO ثبت می‌شوند.
 
-این پروژه در قالب درس مهندسی نرم‌افزار و با استفاده از چارچوب توسعه چابک Scrum در حال توسعه است.
+## ذخیره‌سازی اطلاعات
+
+برای ذخیره اطلاعات از SQLite و Flask-SQLAlchemy استفاده می‌شود. پایگاه داده هنگام اجرای برنامه به‌صورت محلی ایجاد می‌شود. فایل پایگاه داده عمداً در Git ثبت نمی‌شود و هر نصب محلی، اطلاعات وظایف مستقل خود را دارد.
+
+اطلاعات هر وظیفه شامل شناسه یکتا، عنوان، توضیحات اختیاری، وضعیت و زمان ایجاد است.
+
+## تنظیمات
+
+کلید امنیتی Flask از متغیر محیطی `SECRET_KEY` خوانده می‌شود. در صورت تنظیم‌نشدن این متغیر، برنامه از یک مقدار پیش‌فرض مخصوص توسعه استفاده می‌کند. برای استقرار خارج از محیط توسعه، باید مقدار خصوصی و امنی برای آن تنظیم شود.
+
+## روند توسعه
+
+این پروژه در قالب درس مهندسی نرم‌افزار و با چارچوب Scrum توسعه داده می‌شود. مستندات برنامه‌ریزی و اسپرینت‌ها در پوشه `Documents/` قرار دارند.
