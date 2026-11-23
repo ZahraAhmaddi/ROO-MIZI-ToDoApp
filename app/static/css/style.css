@@ -169,3 +169,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .brand-z { color: #FFD300; text-shadow: 1px 1px 0 #C79E00, 2px 2px 0 #927300, 3px 3px 0 rgba(71,67,41,.28); }
 :root[data-theme="dark"] .brand-m { color: #38ACEC; text-shadow: 1px 1px 0 #1976B8, 2px 2px 0 #12558A, 3px 3px 0 rgba(0,0,0,.55); }
 :root[data-theme="dark"] .brand-z { color: #FFD300; text-shadow: 1px 1px 0 #C79E00, 2px 2px 0 #927300, 3px 3px 0 rgba(0,0,0,.55); }
+
+/* Slightly raise the Persian wordmark relative to the English logo */
+.brand-fa {
+  position: relative;
+  top: -4px;
+}
