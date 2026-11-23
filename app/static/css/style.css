@@ -23,7 +23,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 :focus-visible { outline: 3px dashed var(--pink); outline-offset: 3px; }
 .wrap { max-width: 1160px; margin: 0 auto; padding: 28px 22px 0; }
 .topbar { display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
-.brand { display:flex; align-items:center; gap:13px; color:var(--ink); text-decoration:none; }
+.brand { display:flex; flex-wrap:nowrap; align-items:center; gap:13px; color:var(--ink); text-decoration:none; white-space:nowrap; min-width:max-content; }
+.brand-name, .brand-fa, .brand-divider, .brand-star { flex-shrink:0; }
 .brand-star { color:var(--pink); font-size:34px; line-height:1; text-shadow:2px 2px 0 var(--line); }
 .brand-name { display:inline-flex; align-items:center; gap:9px; font:22px/1.35 'Press Start 2P',monospace; letter-spacing:1px; transform:translateY(-2px); }
 .brand-roo { color:#FF8BC2; text-shadow:1px 1px 0 #D94D91,2px 2px 0 #B93675,3px 3px 0 #8E285A,4px 5px 0 rgba(71,67,41,.28); }
