@@ -53,7 +53,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .flash-message.error { border-color:#c2304f; }
 .board { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px; align-items:start; }
 .column { min-width:0; margin:4px; background:var(--column); box-shadow:0 -4px 0 var(--line),0 4px 0 var(--line),-4px 0 0 var(--line),4px 0 0 var(--line),inset -4px -4px 0 var(--shadow); }
-.column-head { display:flex; align-items:center; gap:10px; padding:14px; font:10px/1.5 'Press Start 2P',monospace; }
+.column-head { display:flex; align-items:center; gap:10px; padding:14px; font:12px/1.6 'Press Start 2P',monospace; }
 .column-head h2 { margin:0; font:inherit; }
 .column-symbol { font:26px/1 'VT323',monospace; }
 .count { margin-left:auto; padding:5px 8px; background:var(--ink); color:var(--bg); font:16px 'VT323',monospace; }
@@ -118,14 +118,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
 /* Pixel-style Persian brand + matching delete confirmation dialog */
 .brand-fa {
   font-family: 'Handjet', 'Vazirmatn', sans-serif;
-  font-size: 27px;
+  font-size: 34px;
   font-weight: 700;
   letter-spacing: .5px;
   color: var(--pink);
   text-shadow: 1px 1px 0 var(--rosed), 2px 2px 0 var(--line), 3px 3px 0 var(--shadow);
   image-rendering: pixelated;
 }
-.delete-dialog-head { background: var(--rose); color: #fff7ed; }
+.delete-dialog-head { background: var(--pink); color: #342331; }
 .delete-dialog-body { padding: 18px; }
 .delete-dialog-body p { margin: 0 0 10px; font-size: 23px; line-height: 1.35; }
 .delete-dialog-body strong { color: var(--rose); overflow-wrap: anywhere; }
@@ -135,7 +135,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .delete-confirm-button { background: var(--rose); color: #fff; }
 .delete-confirm-button:hover { filter: brightness(1.08); }
 @media(max-width:480px) {
-  .brand-fa { font-size: 23px; }
+  .brand-fa { font-size: 29px; }
+  .column-head { font-size: 11px; }
   .delete-dialog-body { padding: 14px; }
   .delete-dialog-body .dialog-actions { flex-wrap: wrap; }
 }
