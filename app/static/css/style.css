@@ -25,7 +25,11 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .topbar { display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; }
 .brand { display:flex; align-items:center; gap:13px; color:var(--ink); text-decoration:none; }
 .brand-star { color:var(--pink); font-size:34px; line-height:1; text-shadow:2px 2px 0 var(--line); }
-.brand-name { font:14px/1.4 'Press Start 2P',monospace; letter-spacing:1px; }
+.brand-name { display:inline-flex; align-items:center; gap:9px; font:22px/1.25 'Press Start 2P',monospace; letter-spacing:1px; }
+.brand-roo { color:#E0589A; }
+.brand-mizi { color:#6F8A3C; }
+:root[data-theme="dark"] .brand-roo { color:#F08ABC; }
+:root[data-theme="dark"] .brand-mizi { color:#B3C77B; }
 .brand-divider { width:4px; height:28px; background:var(--line); margin:0 3px; }
 .brand-fa { font:700 19px 'Vazirmatn',sans-serif; }
 .tools { display:flex; align-items:center; gap:10px; }
@@ -62,7 +66,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .task-card h3 { margin:0; font:26px/1.05 'VT323',monospace; overflow-wrap:anywhere; }
 .task-actions { display:flex; align-items:center; flex-shrink:0; gap:4px; }
 .task-actions form { margin:0; }
-.task-icon { width:26px; height:26px; padding:0; font:22px/1 'VT323',monospace; box-shadow:none; }
+.task-icon { width:30px; height:30px; padding:0; font:22px/1 'VT323',monospace; box-shadow:none; }
+.task-icon svg { display:block; }
 .edit-icon { color:var(--soft); }
 .delete-icon { color:#c2304f; }
 .description-link { display:inline-block; margin-top:7px; color:var(--ink); font-size:18px; text-decoration:underline; text-decoration-style:dotted; text-underline-offset:3px; }
@@ -98,9 +103,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .dialog-body textarea { resize:vertical; min-height:90px; }
 .dialog-actions { display:flex; justify-content:flex-end; align-items:center; gap:9px; margin-top:8px; }
 .description-body { padding:18px; white-space:pre-wrap; overflow-wrap:anywhere; }
-@media(max-width:820px) { .board { grid-template-columns:1fr; gap:22px; } .brand-name { font-size:12px; } }
+@media(max-width:820px) { .board { grid-template-columns:1fr; gap:22px; } .brand-name { font-size:19px; } }
 @media(max-width:480px) {
-  .wrap { padding:20px 15px 0; } .brand { gap:8px; } .brand-name { font-size:10px; }
+  .wrap { padding:20px 15px 0; } .brand { gap:8px; } .brand-name { font-size:15px; gap:6px; }
   .brand-fa { font-size:16px; } .brand-divider { height:23px; }
   .tools { gap:6px; } .pixel-button { padding:6px 9px; }
   .column-head { padding:12px; } .task-card { padding:11px; }
