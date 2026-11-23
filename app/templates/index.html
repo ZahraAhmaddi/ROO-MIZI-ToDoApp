@@ -2,7 +2,11 @@
 <div class="task-actions">
   <a class="icon-button task-icon edit-icon" href="#edit-task-{{ task.id }}" aria-label="Edit task" title="Edit task">✎</a>
   <form action="{{ url_for('delete_task', task_id=task.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this task?');">
-    <button class="icon-button task-icon delete-icon" type="submit" aria-label="Delete task" title="Delete task">⌫</button>
+    <button class="icon-button task-icon delete-icon" type="submit" aria-label="Delete task" title="Delete task">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+        <path d="M4 7h16M9 7V4h6v3m3 0-1 13H7L6 7m3 3v7m6-7v7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+      </svg>
+    </button>
   </form>
 </div>
 <div class="overlay" id="edit-task-{{ task.id }}">
@@ -51,7 +55,7 @@
     <header class="topbar">
       <a class="brand" href="{{ url_for('index') }}" aria-label="Roo Mizi home">
         <span class="brand-star" aria-hidden="true">✦</span>
-        <span class="brand-name">ROO MIZI</span>
+        <span class="brand-name"><span class="brand-roo">ROO</span><span class="brand-mizi">MIZI</span></span>
         <span class="brand-divider" aria-hidden="true"></span>
         <span class="brand-fa" lang="fa" dir="rtl">رومیزی</span>
       </a>
