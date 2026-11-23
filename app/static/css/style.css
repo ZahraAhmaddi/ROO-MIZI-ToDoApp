@@ -141,3 +141,31 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .delete-dialog-body { padding: 14px; }
   .delete-dialog-body .dialog-actions { flex-wrap: wrap; }
 }
+
+/* Keep the complete bilingual logo on one horizontal line */
+.brand {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center;
+  white-space: nowrap;
+  min-width: max-content;
+  direction: ltr;
+}
+.brand-name {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  direction: ltr;
+  white-space: nowrap;
+}
+.brand-fa {
+  display: inline-block;
+  direction: rtl;
+  unicode-bidi: isolate;
+  white-space: nowrap;
+}
+.brand-m { color: #38ACEC; text-shadow: 1px 1px 0 #1976B8, 2px 2px 0 #12558A, 3px 3px 0 rgba(71,67,41,.28); }
+.brand-z { color: #FFD300; text-shadow: 1px 1px 0 #C79E00, 2px 2px 0 #927300, 3px 3px 0 rgba(71,67,41,.28); }
+:root[data-theme="dark"] .brand-m { color: #38ACEC; text-shadow: 1px 1px 0 #1976B8, 2px 2px 0 #12558A, 3px 3px 0 rgba(0,0,0,.55); }
+:root[data-theme="dark"] .brand-z { color: #FFD300; text-shadow: 1px 1px 0 #C79E00, 2px 2px 0 #927300, 3px 3px 0 rgba(0,0,0,.55); }
